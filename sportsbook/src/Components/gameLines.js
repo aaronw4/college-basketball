@@ -1,5 +1,5 @@
 import React from 'react';
-import {MidPoint} from './midPoint';
+import {MidPoint} from './midpoint';
 
 const GameLines = () => {
     let data = require('../odds.json')
