@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 def scraping():
     ADDRESS = 'https://www.sportsbookreview.com'
     EXTENSION = '/betting-odds/ncaa-basketball'
-    DATE = 'December 19'
+    DATE = 'December 21'
     # EXTENSION = sys.argv[1]
     # DATE = sys.argv[2]
     ADDRESS_LIST = []
