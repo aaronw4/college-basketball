@@ -36,6 +36,8 @@ function projected (away, home){
     let total = (scoreAway + scoreHome).toFixed(1)
 
     return ({
+        away: away.name,
+        home: home.name,
         moneylineAway: moneylineAway.toFixed(1), 
         moneylineHome: moneylineHome.toFixed(1),
         spreadAway: spreadAway,
