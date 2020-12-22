@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 def scraping():
     ADDRESS = 'https://www.sportsbookreview.com'
     EXTENSION = '/betting-odds/ncaa-basketball'
-    DATE = 'December 21'
+    DATE = 'December 22'
     # EXTENSION = sys.argv[1]
     # DATE = sys.argv[2]
     ADDRESS_LIST = []
@@ -94,38 +94,58 @@ def scraping():
 
         #first half numbers
         first_half = game_period[1]
-
         first_half_lines = first_half.find_all('span', class_='opener')
-        first_half_team1_spread = first_half_lines[0].text
-        first_half_team1_spread = first_half_team1_spread.replace('\u00BD', '.5')
-        first_half_team1_spread_odds = first_half_lines[1].text
-        first_half_team2_spread = first_half_lines[2].text
-        first_half_team2_spread = first_half_team2_spread.replace('\u00BD', '.5')
-        first_half_team2_spread_odds = first_half_lines[3].text
-        first_half_team1_moneyline = first_half_lines[4].text
-        first_half_team2_moneyline = first_half_lines[5].text
-        first_half_over_under = first_half_lines[6].text
-        first_half_over_under = first_half_over_under.replace('\u00BD', '.5')
-        first_half_over_odds = first_half_lines[7].text
-        first_half_under_odds = first_half_lines[9].text
+        
+        if len(first_half_lines) == 10:
+            first_half_team1_spread = first_half_lines[0].text
+            first_half_team1_spread = first_half_team1_spread.replace('\u00BD', '.5')
+            first_half_team1_spread_odds = first_half_lines[1].text
+            first_half_team2_spread = first_half_lines[2].text
+            first_half_team2_spread = first_half_team2_spread.replace('\u00BD', '.5')
+            first_half_team2_spread_odds = first_half_lines[3].text
+            first_half_team1_moneyline = first_half_lines[4].text
+            first_half_team2_moneyline = first_half_lines[5].text
+            first_half_over_under = first_half_lines[6].text
+            first_half_over_under = first_half_over_under.replace('\u00BD', '.5')
+            first_half_over_odds = first_half_lines[7].text
+            first_half_under_odds = first_half_lines[9].text
 
-        first_half = {
-            'spread': {
-                'away_spread': first_half_team1_spread,
-                'away_odds': first_half_team1_spread_odds,
-                'home_spread': first_half_team2_spread,
-                'home_odds': first_half_team2_spread_odds
-            },
-            'moneyline': {
-                'away': first_half_team1_moneyline,
-                'home': first_half_team2_moneyline
-            },
-            'over_under': {
-                'total': first_half_over_under,
-                'over': first_half_over_odds,
-                'under': first_half_under_odds
+            first_half = {
+                'spread': {
+                    'away_spread': first_half_team1_spread,
+                    'away_odds': first_half_team1_spread_odds,
+                    'home_spread': first_half_team2_spread,
+                    'home_odds': first_half_team2_spread_odds
+                },
+                'moneyline': {
+                    'away': first_half_team1_moneyline,
+                    'home': first_half_team2_moneyline
+                },
+                'over_under': {
+                    'total': first_half_over_under,
+                    'over': first_half_over_odds,
+                    'under': first_half_under_odds
+                }
             }
-        }
+        else:
+            first_half = {
+                'spread': {
+                    'away_spread': None,
+                    'away_odds': None,
+                    'home_spread': None,
+                    'home_odds': None
+                },
+                'moneyline': {
+                    'away': None,
+                    'home': None
+                },
+                'over_under': {
+                    'total': None,
+                    'over': None,
+                    'under': None
+                }
+            }
+
         game_odds['first_half'] = first_half
 
         graph_address = ADDRESS + ADDRESS_LIST[i][:-5] + "line-history/"
