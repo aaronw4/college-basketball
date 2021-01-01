@@ -1,9 +1,9 @@
 import React from 'react';
 import {MidPoint} from './midpoint';
+import ProjectedLines from './projectedLines';
 
 const GameLines = () => {
     let data = require('../odds.json')
-    console.log(data[0])    
 
     function sign(value, otherValue) {
         if (Number(value) < Number(otherValue)) {
@@ -29,17 +29,10 @@ const GameLines = () => {
                             <p className='row'>Moneyline</p>
                             <p className='row'>Total</p>
                         </div>
-                        <div className='fgOpening'>
-                            <h5>Full Game Opening</h5>
-                            <p>Away: {game.full_game.spread.away_spread}({game.full_game.spread.away_odds})</p>
-                            <p>Home: {game.full_game.spread.home_spread}({game.full_game.spread.home_odds})</p>
-                            <br/>
-                            <p>Away: {game.full_game.moneyline.away}</p>
-                            <p>Home: {game.full_game.moneyline.home}</p>
-                            <br/>
-                            <p>Over {game.full_game.over_under.total}: {game.full_game.over_under.over}</p>
-                            <p>Under {game.full_game.over_under.total}: {game.full_game.over_under.under}</p>
-                        </div>
+                        <ProjectedLines
+                            away = {game.teams.away}
+                            home = {game.teams.home}
+                        />
                         <div className='fgMidpoint'>
                             <h5>Full Game Midpoints</h5>
                             <p>
@@ -67,17 +60,6 @@ const GameLines = () => {
                                 Under {game.full_game.over_under.total}: {sign(game.full_game.over_under.under, game.full_game.over_under.over)}
                                 {MidPoint(game.full_game.over_under.over, game.full_game.over_under.under)}
                             </p>
-                        </div>
-                        <div className='fhOpening'>
-                            <h5>First Half Opening</h5>
-                            <p>Away: {game.first_half.spread.away_spread}({game.first_half.spread.away_odds})</p>
-                            <p>Home: {game.first_half.spread.home_spread}({game.first_half.spread.home_odds})</p>
-                            <br/>
-                            <p>Away: {game.first_half.moneyline.away}</p>
-                            <p>Home: {game.first_half.moneyline.home}</p>
-                            <br/>
-                            <p>Over {game.first_half.over_under.total}: {game.first_half.over_under.over}</p>
-                            <p>Under {game.first_half.over_under.total}: {game.first_half.over_under.under}</p>
                         </div>
                         <div className='fhMidpoints'>
                             <h5>First Half Midpoints</h5>
