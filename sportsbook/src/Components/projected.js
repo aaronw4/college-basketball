@@ -1,4 +1,4 @@
-function projected (away, home){
+export function projected (away, home){
     let pythAway = away.AdjO**10.25 / (away.AdjO**10.25 + away.AdjD**10.25)
     let pythHome = home.AdjO**10.25 / (home.AdjO**10.25 + home.AdjD**10.25)
 
@@ -35,7 +35,7 @@ function projected (away, home){
     let spreadAway = (scoreHome - scoreAway).toFixed(1)
     let total = (scoreAway + scoreHome).toFixed(1)
 
-    return ({
+    return ([{
         away: away.name,
         home: home.name,
         moneylineAway: moneylineAway.toFixed(1), 
@@ -43,9 +43,9 @@ function projected (away, home){
         spreadAway: spreadAway,
         spreadHome: spreadHome,
         total: total
-    })
+    }])
 }
 
-team1 = { name: 'Wichita St.', AdjO: '105.8', AdjD: '96.4', AdjT: '69.0' }
-team2 = { name: 'South Florida', AdjO: '101.0', AdjD: '93.9', AdjT: '69.6' }
-console.log(projected(team1, team2))
+// team1 = { name: 'Wichita St.', AdjO: '105.8', AdjD: '96.4', AdjT: '69.0' }
+// team2 = { name: 'South Florida', AdjO: '101.0', AdjD: '93.9', AdjT: '69.6' }
+// console.log(projected(team1, team2))
