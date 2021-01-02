@@ -68,6 +68,24 @@ function fixName(name) {
     if (name.search("Kansas City") !== -1) {
         name = name.replace("Kansas City", "UMKC")
     }
+    if (name.search("St. Peter's") !== -1) {
+        name = name.replace("St. Peter's", "Saint Peter's")
+    }
+    if (name.search("Texas Arlington") !== -1) {
+        name = name.replace("Texas Arlington", "UT Arlington")
+    }
+    if (name.search("Florida International") !== -1) {
+        name = name.replace("Florida International", "FIU")
+    }
+    if (name.search("Louisiana Lafayette") !== -1) {
+        name = name.replace("Louisiana Lafayette", "Lafayette")
+    }
+    if (name.search("Miami (FL)" !== -1)) {
+        name = name.replace("Miami (FL)", "Miami FL")
+    }
+    if (name.search("N.J.I.T.") !== -1) {
+        name = name.replace("N.J.I.T.", "NJIT")
+    }
 
     return name
 }
