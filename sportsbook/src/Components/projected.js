@@ -1,6 +1,7 @@
 export function projected (away, home){
     let pythAway = away.AdjO**10.25 / (away.AdjO**10.25 + away.AdjD**10.25)
     let pythHome = home.AdjO**10.25 / (home.AdjO**10.25 + home.AdjD**10.25)
+    // home/away undefined error means findTeam() cant find the team name in stats.json
 
     let oddsAway = ((pythAway - pythAway*pythHome) / (pythAway + pythHome - 2*pythAway*pythHome))*100
     let oddsHome = ((pythHome - pythAway*pythHome) / (pythAway + pythHome - 2*pythAway*pythHome))*100
