@@ -83,8 +83,20 @@ function fixName(name) {
     if (name.search("Miami (FL)" !== -1)) {
         name = name.replace("Miami (FL)", "Miami FL")
     }
+    if (name.search("Miami (OH)" !== -1)) {
+        name = name.replace("Miami (OH)", "Miami OH")
+    }
     if (name.search("N.J.I.T.") !== -1) {
         name = name.replace("N.J.I.T.", "NJIT")
+    }
+    if (name.search("Southern University" !== -1)) {
+        name = name.replace("Southern University", "Southern")
+    }
+    if (name.search("California Baptist" !== -1)) {
+        name = name.replace("California Baptist", "Cal Baptist")
+    }
+    if (name.search("Texas A&M CC" !== -1)) {
+        name = name.replace("Texas A&M CC", "Texas A&M Corpus Chris")
     }
 
     return name
