@@ -98,6 +98,9 @@ function fixName(name) {
     if (name.search("Texas A&M CC" !== -1)) {
         name = name.replace("Texas A&M CC", "Texas A&M Corpus Chris")
     }
+    if (name.search("St. Francis (PA)" !== -1)) {
+        name = name.replace("St. Francis (PA)", "St. Francis PA")
+    }
 
     return name
 }
