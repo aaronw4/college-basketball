@@ -101,6 +101,15 @@ function fixName(name) {
     if (name.search("St. Francis (PA)" !== -1)) {
         name = name.replace("St. Francis (PA)", "St. Francis PA")
     }
+    if (name.search("Detroit Mercy" !== -1)) {
+        name = name.replace("Detroit Mercy", "Detroit")
+    }
+    if (name.search("American University" !== -1)) {
+        name = name.replace("American University", "American")
+    }
+    if (name.search("Loyola (MD)" !== -1)) {
+        name = name.replace("Loyola (MD)", "Loyola MD")
+    }
 
     return name
 }
