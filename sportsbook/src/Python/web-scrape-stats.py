@@ -25,9 +25,11 @@ def scraping():
         adjo = adj_stats[0].text
         adjd = adj_stats[1].text
         adjt = adj_stats[2].text
+        sos = adj_stats[4].text
         team_stats['AdjO'] = adjo
         team_stats['AdjD'] = adjd
         team_stats['AdjT'] = adjt
+        team_stats['SOS'] = sos
 
         STATS.append(team_stats)
 
