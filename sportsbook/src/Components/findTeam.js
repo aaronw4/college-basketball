@@ -110,6 +110,9 @@ function fixName(name) {
     if (name.search("Loyola (MD)" !== -1)) {
         name = name.replace("Loyola (MD)", "Loyola MD")
     }
+    if (name.search("St. Francis (BKN)" !== -1)) {
+        name = name.replace("St. Francis (BKN)", "St. Francis NY")
+    }
 
     return name
 }
