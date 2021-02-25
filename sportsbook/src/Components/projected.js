@@ -31,15 +31,10 @@ export function projected (away, home){
     let adjOave = adjOtotals / adjOvalues.length
     let scoreAway = (away.AdjO/adjOave)*home.AdjD*(possessions/100)
     let scoreHome = (home.AdjO/adjOave)*away.AdjD*(possessions/100)
-    let sos = Number(away.SOS) - Number(home.SOS)
-    let sosScoreAway = ((Number(away.AdjO) - sos)/adjOave)*home.AdjD*(possessions/100)
-    let sosScoreHome = ((Number(home.AdjO) + sos)/adjOave)*away.AdjD*(possessions/100)
-    console.log(away.name, scoreAway, home.name, scoreHome)
-    console.log(away.name, sosScoreAway, home.name, sosScoreHome)
 
-    let spreadHome = (sosScoreAway - sosScoreHome).toFixed(1)
-    let spreadAway = (sosScoreHome - sosScoreAway).toFixed(1)
-    let total = (sosScoreAway + sosScoreHome).toFixed(1)
+    let spreadHome = (scoreAway - scoreHome).toFixed(1)
+    let spreadAway = (scoreHome - scoreAway).toFixed(1)
+    let total = (scoreAway + scoreHome).toFixed(1)
 
     return ([{
         away: away.name,
