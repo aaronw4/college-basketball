@@ -1,5 +1,5 @@
 import React from 'react';
-import {MidPoint} from './midpoint';
+import {MidPoint} from '../Functions/midpoint';
 import ProjectedLines from './projectedLines';
 
 const GameLines = () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import {findTeam} from './findTeam';
+import {findTeam} from '../Functions/findTeam';
 
 export function projectedSOS (away, home){
     // home/away undefined error means findTeam() cant find the team name in stats.json

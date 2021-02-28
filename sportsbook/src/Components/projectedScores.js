@@ -1,7 +1,7 @@
 import React from 'react';
-import {findTeam} from './findTeam';
+import {findTeam} from '../Functions/findTeam';
 
-function projectedScores (away, home){
+export function projectedScores (away, home){
     // home/away undefined error means findTeam() cant find the team name in stats.json
 
     let data = require("../stats.json")
@@ -15,6 +15,7 @@ function projectedScores (away, home){
     let adjOave = adjOtotals / adjOvalues.length
     let scoreAway = (away.AdjO/adjOave)*home.AdjD*(possessions/100)
     let scoreHome = (home.AdjO/adjOave)*away.AdjD*(possessions/100)
+    console.log(adjTAve, adjOave)
 
     let spreadHome = (scoreAway - scoreHome).toFixed(1)
     let spreadAway = (scoreHome - scoreAway).toFixed(1)

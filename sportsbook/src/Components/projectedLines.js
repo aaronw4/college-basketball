@@ -1,6 +1,6 @@
 import React from 'react';
-import {findTeam} from './findTeam';
-import {projected} from './projected';
+import {findTeam} from '../Functions/findTeam';
+import {projected} from '../Functions/projected';
 
 const ProjectedLines = (props) => {
     let awayStats = findTeam(props.away);
