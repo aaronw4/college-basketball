@@ -10,18 +10,28 @@ function Bet(props) {
     let projected = projectedScores(away[0], home[0])
     let projSOS = projectedSOS(away[0], home[0])
     let projectedResults = winResults(
+        'projected',
         props.spread1, 
         props.spread2,
         props.score1,
         props.score2,
+        props.odds1,
+        props.odds2,
+        props.openingSpread1,
+        props.openingSpread2,
         projected[0].spreadAway,
         projected[0].spreadHome
     )
     let projectedSosResults = winResults(
+        'projected',
         props.spread1, 
         props.spread2,
         props.score1,
         props.score2,
+        props.odds1,
+        props.odds2,
+        props.openingSpread1,
+        props.openingSpread2,
         projSOS[0].spreadAway,
         projSOS[0].spreadHome
     )
