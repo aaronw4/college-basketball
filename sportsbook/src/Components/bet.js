@@ -3,6 +3,8 @@ import {findTeam} from '../Functions/findTeam';
 import {projectedScores} from "./projectedScores";
 import {projectedSOS} from './projectedSOSscores';
 import {winResults} from '../Functions/winResults';
+import {sign} from '../Functions/sign';
+import {MidPoint} from '../Functions/midpoint';
 
 function Bet(props) {
     let away = findTeam(props.team1)
@@ -35,6 +37,21 @@ function Bet(props) {
         projSOS[0].spreadAway,
         projSOS[0].spreadHome
     )
+    let midpoint1 = sign(props.openingOdds1, props.openingOdds2) + MidPoint(props.openingOdds1, props.openingOdds2)
+    let midpoint2 = sign(props.openingOdds2, props.openingOdds1) + MidPoint(props.openingOdds1, props.openingOdds2)
+    let midpointResults = winResults(
+        'midpoint',
+        props.spread1, 
+        props.spread2,
+        props.score1,
+        props.score2,
+        props.odds1,
+        props.odds2,
+        midpoint1,
+        midpoint2,
+        props.openingSpread1,
+        props.openingSpread2
+    )
 
     return (
         <div className='fgOpening bet'>
@@ -45,6 +62,10 @@ function Bet(props) {
             <h5>Projected SOS Bet</h5>
             <p>{projectedSosResults.homeAway + projectedSosResults.pick}</p>
             <p>{projectedSosResults.result}</p>
+            <br/>
+            <h5>MidPoint Bet</h5>
+            <p>{midpointResults.homeAway + midpointResults.pick}</p>
+            <p>{midpointResults.result}</p>
         </div>
     )
 }
