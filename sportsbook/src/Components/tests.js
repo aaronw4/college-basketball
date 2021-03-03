@@ -3,6 +3,8 @@ import ProjectedLines from './projectedScores';
 import ProjectedLinesSOS from './projectedSOSscores';
 import Bet from './bet';
 import TestCount from './testCount';
+import {sign} from '../Functions/sign'
+import { MidPoint } from '../Functions/midpoint';
 
 const Tests = () => {
     let data = require('../test.json')
@@ -22,8 +24,20 @@ const Tests = () => {
                             </div>
                             <div className='fgOpening'>
                                 <h5>Actual Line</h5>
-                                <p>Away: {game.spread1}</p>
-                                <p>Home: {game.spread2}</p>
+                                <p>Away: {game.spread1}({game.odds1})</p>
+                                <p>Home: {game.spread2}({game.odds2})</p>
+                                <br/>
+                                <h5>MidPoint</h5>
+                                <p>
+                                    Away: {game.openingSpread1}
+                                    ({sign(game.openingOdds1, game.openingOdds2)}
+                                    {MidPoint(game.openingOdds1, game.openingOdds2)})
+                                </p>
+                                <p>
+                                    Home: {game.openingSpread2}
+                                    ({sign(game.openingOdds2, game.openingOdds1)}
+                                    {MidPoint(game.openingOdds1, game.openingOdds2)})
+                                </p>
                             </div>
                             <ProjectedLines
                                 away = {game.team1}
@@ -32,7 +46,8 @@ const Tests = () => {
                             <ProjectedLinesSOS
                                 away = {game.team1}
                                 home = {game.team2}
-                            />                        
+                            />  
+
                             <div className='fgOpening'>
                                 <h5>Results</h5>
                                 <p>Away: {Number(game.score2) - Number(game.score1)}</p>
@@ -48,6 +63,10 @@ const Tests = () => {
                                 spread2 = {game.spread2}
                                 score1 = {game.score1}
                                 score2 = {game.score2}
+                                odds1 = {game.odds1}
+                                odds2 = {game.odds2}
+                                openingSpread1 = {game.openingSpread1}
+                                openingSpread2 = {game.openingSpread2}
                            />                        
                         </div>
                     </div>
