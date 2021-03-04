@@ -7,23 +7,12 @@ export function winResults(type, spread1, spread2, score1, score2, odds1, odds2,
     if (spread1 === '') {
         homeAway = ''
         pick = 'No bet.'
-    } else if (Number(spread1) - Number(projAway) > 3) {
+    } else if (Number(spread1) - Number(projAway) >= 2.5) {
         homeAway = 'Away: '
         pick = spread1
-    } else if (-1*Number(spread1) - Number(projHome) > 3) {
+    } else if (-1*Number(spread1) - Number(projHome) >= 2.5) {
         homeAway = 'Home: '
         pick = spread2
-    } else if (type === 'midpoint' && spread1 === projAway) {
-        if (Number(odds1) - Number(openingOdds1) > 2) {
-            homeAway = 'Away: '
-            pick = odds1
-        } else if (Number(odds2) - Number(openingOdds2) > 2) {
-            homeAway = 'Home: '
-            pick = spread2
-        } else {
-            homeAway = ''
-            pick = "No bet."
-        }
     } else {
         homeAway = ''
         pick = 'No bet.'
