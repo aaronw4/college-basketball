@@ -20,6 +20,10 @@ const TestCount = () => {
     let projSosNoBetCountTotal = 0
     let midpointCount = 0
     let midpointTotal = 0
+    let mpProjAgree = 0
+    let mpProjAgreeTotal = 0
+    let mpNotProjected = 0
+    let mpNotProjectedTotal = 0
     
     for (let i=0; i < data.length; i++) {
         let away = findTeam(data[i].team1)
@@ -111,6 +115,20 @@ const TestCount = () => {
         } else if (midpointResults.result === 'Lose') {
             midpointTotal++
         }
+
+        if (midpointResults.result === 'Win' && projectedResults.result === 'Win') {
+            mpProjAgree++
+            mpProjAgreeTotal++
+        } else if (midpointResults.result === 'Lose' && projectedResults.result === 'Lose') {
+            mpProjAgreeTotal++
+        }
+
+        if (midpointResults.result === "Win" && projectedResults.result === 'Lose') {
+            mpNotProjected++
+            mpNotProjectedTotal++
+        } else if (midpointResults.result === "Lose" && projectedResults.result === 'Win') {
+            mpNotProjectedTotal++
+        }
     }
     
     return (
@@ -121,11 +139,13 @@ const TestCount = () => {
             </div>
             <div>
                 <h3>Combined Wins = {combined}/{combinedTotal} ({(combined/combinedTotal*100).toFixed()}%)</h3>
-                <h3>Proj not SOS Wins = {projNotSosCount}/{projNotSosCountTotal} ({(projNotSosCount/projNotSosCountTotal*100).toFixed()}%)</h3>
-                <h3>Proj, SOS No Bet, Wins = {projSosNoBetCount}/{projSosNoBetCountTotal} ({(projSosNoBetCount/projSosNoBetCountTotal*100).toFixed()}%)</h3>
+                <h3>Proj Wins when SOS Disagree = {projNotSosCount}/{projNotSosCountTotal} ({(projNotSosCount/projNotSosCountTotal*100).toFixed()}%)</h3>
+                <h3>Proj Wins when SOS No Bet = {projSosNoBetCount}/{projSosNoBetCountTotal} ({(projSosNoBetCount/projSosNoBetCountTotal*100).toFixed()}%)</h3>
             </div>
             <div>
                 <h3>Midpoint Wins = {midpointCount}/{midpointTotal} ({(midpointCount/midpointTotal*100).toFixed()}%)</h3>
+                <h3>MP + Projected Agree Wins = {mpProjAgree}/{mpProjAgreeTotal} ({(mpProjAgree/mpProjAgreeTotal*100).toFixed()}%)</h3>
+                <h3>MP Wins when Proj Disagree = {mpNotProjected}/{mpNotProjectedTotal} ({(mpNotProjected/mpNotProjectedTotal*100).toFixed()})</h3>
             </div>
         </div>
     )
