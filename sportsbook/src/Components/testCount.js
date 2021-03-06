@@ -24,6 +24,10 @@ const TestCount = () => {
     let mpProjAgreeTotal = 0
     let mpNotProjected = 0
     let mpNotProjectedTotal = 0
+    let totalProjectedCount2 = 0
+    let totalProjectedTotal2 = 0
+    let totalProjectedCount4 = 0
+    let totalProjectedTotal4 = 0
     
     for (let i=0; i < data.length; i++) {
         let away = findTeam(data[i].team1)
@@ -129,6 +133,55 @@ const TestCount = () => {
         } else if (midpointResults.result === "Lose" && projectedResults.result === 'Win') {
             mpNotProjectedTotal++
         }
+        
+    let totalPick2
+    let totalPick4
+    let total = Number(data[i].score1) + Number(data[i].score2)
+    let projectedGameTotal = Number(projected[0].total)
+
+    if (projectedGameTotal > Number(data[i].total) + 2) {
+        totalPick2 = 'Over'
+    } else if (projectedGameTotal < Number(data[i].total) - 2) {
+        totalPick2 = 'Under'
+    } else {
+        totalPick2 = 'No Bet'
+    }
+
+    if (projectedGameTotal > Number(data[i].total) + 4) {
+        totalPick4 = 'Over'
+    } else if (projectedGameTotal < Number(data[i].total) - 4) {
+        totalPick4 = 'Under'
+    } else {
+        totalPick4 = 'No Bet'
+    }
+
+    if (totalPick2 === 'Over' && total > Number(data[i].total)) {
+        totalProjectedCount2++
+        totalProjectedTotal2++
+    } else if (totalPick2 === 'Over' && total < Number(data[i].total)) {
+        totalProjectedTotal2++
+    } else if (total === projectedTotal) {
+        totalProjectedTotal2--
+    } else if (totalPick2 === 'Under' && total > Number(data[i].total)) {
+        totalProjectedTotal2++
+    } else if (totalPick2 === 'Under' && total < Number(data[i].total)) {
+        totalProjectedCount2++
+        totalProjectedTotal2++
+    }
+
+    if (totalPick4 === 'Over' && total > Number(data[i].total)) {
+        totalProjectedCount4++
+        totalProjectedTotal4++
+    } else if (totalPick4 === 'Over' && total < Number(data[i].total)) {
+        totalProjectedTotal4++
+    } else if (total === projectedTotal) {
+        totalProjectedTotal4--
+    } else if (totalPick4 === 'Under' && total > Number(data[i].total)) {
+        totalProjectedTotal4++
+    } else if (totalPick4 === 'Under' && total < Number(data[i].total)) {
+        totalProjectedCount4++
+        totalProjectedTotal4++
+    }
     }
     
     return (
@@ -136,6 +189,8 @@ const TestCount = () => {
             <div>
                 <h3>Projected Wins = {projectedCount}/{projectedTotal} ({(projectedCount/projectedTotal*100).toFixed()}%)</h3>
                 <h3>Projected SOS Wins = {projectedSosCount}/{projectedSosTotal} ({(projectedSosCount/projectedSosTotal*100).toFixed()}%)</h3>
+                <h3>Proj Total +2 Wins = {totalProjectedCount2}/{totalProjectedTotal2} ({(totalProjectedCount2/totalProjectedTotal2*100).toFixed()}%)</h3>
+                <h3>Proj Total +4 Wins = {totalProjectedCount4}/{totalProjectedTotal4} ({(totalProjectedCount4/totalProjectedTotal4*100).toFixed()}%)</h3>
             </div>
             <div>
                 <h3>Combined Wins = {combined}/{combinedTotal} ({(combined/combinedTotal*100).toFixed()}%)</h3>
