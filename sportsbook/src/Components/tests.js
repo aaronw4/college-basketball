@@ -27,7 +27,24 @@ const Tests = () => {
                                 <p>Away: {game.spread1}({game.odds1})</p>
                                 <p>Home: {game.spread2}({game.odds2})</p>
                                 <br/>
-                                <h5>MidPoint</h5>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <p>Total: {game.total}</p>
+                            </div>
+                            <ProjectedLines
+                                away = {game.team1}
+                                home = {game.team2}
+                            />
+                            <ProjectedLinesSOS
+                                away = {game.team1}
+                                home = {game.team2}
+                            />  
+                            <div>
+                            <h5>MidPoint</h5>
                                 <p>
                                     Away: {game.openingSpread1}
                                     ({sign(game.openingOdds1, game.openingOdds2)}
@@ -39,15 +56,6 @@ const Tests = () => {
                                     {MidPoint(game.openingOdds1, game.openingOdds2)})
                                 </p>
                             </div>
-                            <ProjectedLines
-                                away = {game.team1}
-                                home = {game.team2}
-                            />
-                            <ProjectedLinesSOS
-                                away = {game.team1}
-                                home = {game.team2}
-                            />  
-
                             <div className='fgOpening'>
                                 <h5>Results</h5>
                                 <p>Away: {Number(game.score2) - Number(game.score1)}</p>
@@ -55,6 +63,9 @@ const Tests = () => {
                                 <br/>
                                 <p>Away: {game.score1}</p>
                                 <p>Home: {game.score2}</p>
+                                <br/>
+                                <br/>
+                                <p>Total: {Number(game.score2) + Number(game.score1)}</p>
                             </div>  
                            <Bet 
                                 team1 = {game.team1}
@@ -67,6 +78,7 @@ const Tests = () => {
                                 odds2 = {game.odds2}
                                 openingSpread1 = {game.openingSpread1}
                                 openingSpread2 = {game.openingSpread2}
+                                total = {game.total}
                            />                        
                         </div>
                     </div>
