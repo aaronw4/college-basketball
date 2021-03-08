@@ -5,10 +5,11 @@ from bs4 import BeautifulSoup
 
 def scraping():
     ADDRESS = 'https://classic.sportsbookreview.com'
-    OPENING_ADDRESS = 'https://www.sportsbookreview.com'
+    # OPENING_ADDRESS = 'https://www.sportsbookreview.com'
     EXTENSION = '/betting-odds/ncaa-basketball/?date='
-    DATE = '20210302'
-    # EXTENSION = sys.argv[1]
+    EXTENSION_TOTALS = '/betting-odds/ncaa-basketball/totals/?date='
+    DATE = '20210306'
+    # EXTENSION = sys.argv[1] 
     # DATE = sys.argv[2]
     TEAMS_LIST = []
     SCORES_LIST = []
@@ -17,7 +18,7 @@ def scraping():
     OPENING_ODDS_LIST = []
     OPENING_SPREAD_LIST = []
     TOTALS_LIST = []
-    ADDRESS_LIST = []
+    # ADDRESS_LIST = []
     TEST_DATA = []
     USER_SETTINGS = 'user_settings=eyJkYXRhIjoie1wic2V0dGluZ3NcIjpbe1wiaWRcIjpcIjVhNGJhMjYzODI4MTg5NTNjMDkyZWZmMFwiLFwidmFsdWVcIjpcIlxcXCJ0aW1lXFxcIlwifSx7XCJpZFwiOlwiNWE0M2MxMWI4MjgxODk1M2MwOTJlZmU1XCIsXCJ2YWx1ZVwiOlwiXFxcIlVTL0Vhc3Rlcm5cXFwiXCJ9LHtcImlkXCI6XCI1YTQzYzBhZjgyODE4OTUzYzA5MmVmZTRcIixcInZhbHVlXCI6XCJcXFwiMjM4LTIwXFxcIlwifSx7XCJpZFwiOlwiNWE0M2JlOWQ4MjgxODk1M2MwOTJlZmUzXCIsXCJ2YWx1ZVwiOlwiXFxcInVzXFxcIlwifSx7XCJpZFwiOlwiNWE0M2JlNzA4MjgxODk1M2MwOTJlZmUyXCIsXCJ2YWx1ZVwiOlwiZmFsc2VcIn0se1wiaWRcIjpcIjVhNDNiZTQwODI4MTg5NTNjMDkyZWZlMVwiLFwidmFsdWVcIjpcInRydWVcIn0se1wiaWRcIjpcIjVhNDNiZGMxODI4MTg5NTNjMDkyZWZlMFwiLFwidmFsdWVcIjpcImZhbHNlXCJ9LHtcImlkXCI6XCI1YTQzYThjYTgyODE4OTUzYzA5MmVmZGFcIixcInZhbHVlXCI6XCJmYWxzZVwifSx7XCJpZFwiOlwiNWE0Mjg0OWM4MjgxODk1M2MwOTJlZmQ5XCIsXCJ2YWx1ZVwiOlwiXFxcInRydWVcXFwiXCJ9LHtcImlkXCI6XCI1YjBlYmNiMjVkMzQ0NjI4YTU0ZDRmZmFcIixcInZhbHVlXCI6XCJcXFwiY29tcGFjdFxcXCJcIn1dfSIsInR5cGUiOiJvYmplY3QifQ=='
     headers={
@@ -119,7 +120,27 @@ def scraping():
         SPREADS_LIST.append(spread2)
         ODDS_LIST.append(odds1)
         ODDS_LIST.append(odds2)
-    
+
+    # Collect totals lines
+    html_data = requests.get(
+        ADDRESS + EXTENSION_TOTALS + DATE,
+        headers=headers
+    )    
+    soup = BeautifulSoup(html_data.text, 'lxml')
+
+    for lines in soup.find_all('div', rel='1096'):
+        total_lines = lines.find_all('b')
+        if len(total_lines) == 0:
+            continue
+        total_line1 = total_lines[0].text
+        total_line2 = total_lines[1].text
+        total1 = total_line1[:-5]
+        total1 = total1.replace('\u00BD', '.5')
+        total2 = total_line2[:-5]
+        total2 = total2.replace('\u00BD', '.5')
+        TOTALS_LIST.append(total1)
+        TOTALS_LIST.append(total2)
+        
     # Create object with data
     for i in range(0, len(TEAMS_LIST), 2):
         team_stats = {}
@@ -136,6 +157,7 @@ def scraping():
         team_stats['openingSpread2'] = OPENING_SPREAD_LIST[i+1]
         team_stats['openingOdds1'] = OPENING_ODDS_LIST[i]
         team_stats['openingOdds2'] = OPENING_ODDS_LIST[i+1]
+        team_stats['total'] = TOTALS_LIST[i]
         team_stats['date'] = DATE
 
         TEST_DATA.append(team_stats)
