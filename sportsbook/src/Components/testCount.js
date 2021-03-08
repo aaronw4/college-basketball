@@ -24,6 +24,8 @@ const TestCount = () => {
     let mpProjAgreeTotal = 0
     let mpNotProjected = 0
     let mpNotProjectedTotal = 0
+    let projSosProjNoBetCount = 0
+    let projSosProjNoBetTotal = 0
     let totalProjectedCount2 = 0
     let totalProjectedTotal2 = 0
     let totalProjectedCount4 = 0
@@ -94,6 +96,13 @@ const TestCount = () => {
             projSosNoBetCountTotal++
         } else if (projectedResults.result === 'Lose' && projectedSosResults.result === '') {
             projSosNoBetCountTotal++
+        }
+
+        if (projectedResults.result === '' && projectedSosResults.result === 'Win') {
+            projSosProjNoBetCount++
+            projSosProjNoBetTotal++
+        } else if (projectedResults.result === '' && projectedSosResults.result === 'Lose') {
+            projSosProjNoBetTotal++
         }
 
         let midpoint1 = sign(data[i].openingOdds1, data[i].openingOdds2) + MidPoint(data[i].openingOdds1, data[i].openingOdds2)
@@ -196,6 +205,7 @@ const TestCount = () => {
                 <h3>Combined Wins = {combined}/{combinedTotal} ({(combined/combinedTotal*100).toFixed()}%)</h3>
                 <h3>Proj Wins when SOS Disagree = {projNotSosCount}/{projNotSosCountTotal} ({(projNotSosCount/projNotSosCountTotal*100).toFixed()}%)</h3>
                 <h3>Proj Wins when SOS No Bet = {projSosNoBetCount}/{projSosNoBetCountTotal} ({(projSosNoBetCount/projSosNoBetCountTotal*100).toFixed()}%)</h3>
+                <h3>ProjSos Wins when Proj No Bet = {projSosProjNoBetCount}/{projSosProjNoBetTotal}({(projSosProjNoBetCount/projSosProjNoBetTotal*100).toFixed()}%)</h3>
             </div>
             <div>
                 <h3>Midpoint Wins = {midpointCount}/{midpointTotal} ({(midpointCount/midpointTotal*100).toFixed()}%)</h3>
