@@ -26,7 +26,7 @@
 .row {
   margin-top: 90px;
 }
-.fgOpening, .fhOpening {
+.fgOpening, .fhOpening, .betTotals {
   margin-left: 25px;
 }
 .fgMidpoint, .fhMidpoints {
@@ -37,4 +37,24 @@
 .iframe {
   margin-left: 25px;
   width: 600px;
+}
+.testsGameBox {
+  width: 80vw;
+}
+.testsGameInfo {
+  display: flex;
+  margin-left: 30px;
+  margin-bottom: 20px;
+  border: 10px solid white;
+  padding: 20px;
+}
+.bet {
+  color: yellow;
+}
+.betContainer {
+  display: flex;
+}
+.testCount {
+  display: flex;
+  justify-content: space-evenly;
 }
