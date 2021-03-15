@@ -169,8 +169,6 @@ const TestCount = () => {
         totalProjectedTotal2++
     } else if (totalPick2 === 'Over' && total < Number(data[i].total)) {
         totalProjectedTotal2++
-    } else if (total === projectedTotal) {
-        totalProjectedTotal2--
     } else if (totalPick2 === 'Under' && total > Number(data[i].total)) {
         totalProjectedTotal2++
     } else if (totalPick2 === 'Under' && total < Number(data[i].total)) {
@@ -183,8 +181,6 @@ const TestCount = () => {
         totalProjectedTotal4++
     } else if (totalPick4 === 'Over' && total < Number(data[i].total)) {
         totalProjectedTotal4++
-    } else if (total === projectedTotal) {
-        totalProjectedTotal4--
     } else if (totalPick4 === 'Under' && total > Number(data[i].total)) {
         totalProjectedTotal4++
     } else if (totalPick4 === 'Under' && total < Number(data[i].total)) {
