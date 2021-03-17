@@ -3,8 +3,8 @@ import {findTeam} from '../Functions/findTeam';
 import {projected} from '../Functions/projected';
 
 const ProjectedLines = (props) => {
-    let awayStats = findTeam(props.away);
-    let homeStats = findTeam(props.home);
+    let awayStats = findTeam(props.away, props.purpose);
+    let homeStats = findTeam(props.home, props.purpose);
     let projectedStats = projected(awayStats[0], homeStats[0]);
     
     return (

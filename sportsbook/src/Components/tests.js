@@ -38,6 +38,7 @@ const Tests = () => {
                             <ProjectedLines
                                 away = {game.team1}
                                 home = {game.team2}
+                                purpose = 'test'
                             />
                             <ProjectedLinesSOS
                                 away = {game.team1}

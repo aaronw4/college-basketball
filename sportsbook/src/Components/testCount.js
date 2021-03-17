@@ -32,8 +32,8 @@ const TestCount = () => {
     let totalProjectedTotal4 = 0
     
     for (let i=0; i < data.length; i++) {
-        let away = findTeam(data[i].team1)
-        let home = findTeam(data[i].team2)
+        let away = findTeam(data[i].team1, 'test')
+        let home = findTeam(data[i].team2, 'test')
         let projected = projectedScores(away[0], home[0])
         let projectedResults = winResults(
             'projected',

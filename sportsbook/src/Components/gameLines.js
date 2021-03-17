@@ -26,6 +26,7 @@ const GameLines = () => {
                         <ProjectedLines
                             away = {game.teams.away}
                             home = {game.teams.home}
+                            purpose = 'predict'
                         />
                         <ProjectedLinesSOS
                             away = {game.teams.away}

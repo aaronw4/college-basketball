@@ -7,8 +7,8 @@ import {sign} from '../Functions/sign';
 import {MidPoint} from '../Functions/midpoint';
 
 function Bet(props) {
-    let away = findTeam(props.team1)
-    let home = findTeam(props.team2)
+    let away = findTeam(props.team1, 'past')
+    let home = findTeam(props.team2, 'past')
     let projected = projectedScores(away[0], home[0])
     let projSOS = projectedSOS(away[0], home[0])
     let projectedResults = winResults(
