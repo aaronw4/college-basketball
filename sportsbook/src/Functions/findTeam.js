@@ -1,14 +1,14 @@
-import fixName from './fixName'
-import fixPastName from './fixPastName'
+import {fixName} from './fixName'
+import {fixPastName} from './fixPastName'
 
-function findTeam (name, purpose) {
+export function findTeam (name, purpose) {
     let stats
     if (purpose === 'test') {
         stats = require('../pastStats.json')
         let adjName = fixPastName(name)
         let teamStats = stats.filter(team => team.name === adjName)
         return teamStats
-    } else {
+    } else if (purpose === 'predict') {
         stats = require('../stats.json')
         let adjName = fixName(name)
         let teamStats = stats.filter(team => team.name === adjName)    

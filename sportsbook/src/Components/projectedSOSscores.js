@@ -41,8 +41,8 @@ export function projectedSOS (away, home){
 }
 
 const ProjectedLinesSOS = (props) => {
-    let awayStats = findTeam(props.away);
-    let homeStats = findTeam(props.home);
+    let awayStats = findTeam(props.away, 'predict');
+    let homeStats = findTeam(props.home, 'predict');
     let projectedStats = projectedSOS(awayStats[0], homeStats[0]);
     
     return (

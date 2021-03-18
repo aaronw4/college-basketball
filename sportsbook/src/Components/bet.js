@@ -7,8 +7,8 @@ import {sign} from '../Functions/sign';
 import {MidPoint} from '../Functions/midpoint';
 
 function Bet(props) {
-    let away = findTeam(props.team1, 'past')
-    let home = findTeam(props.team2, 'past')
+    let away = findTeam(props.team1, 'test')
+    let home = findTeam(props.team2, 'test')
     let projected = projectedScores(away[0], home[0])
     let projSOS = projectedSOS(away[0], home[0])
     let projectedResults = winResults(
@@ -57,7 +57,9 @@ function Bet(props) {
     let projectedTotal = Number(projected[0].total)
     let result
 
-    if (projectedTotal > Number(props.total) + 4) {
+    if (Number(props.total) === 0) {
+        totalPick = 'No Bet'
+    } else if (projectedTotal > Number(props.total) + 4) {
         totalPick = 'Over'
     } else if (projectedTotal < Number(props.total) - 4) {
         totalPick = 'Under'
