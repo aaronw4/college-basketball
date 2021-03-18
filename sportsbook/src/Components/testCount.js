@@ -147,8 +147,10 @@ const TestCount = () => {
     let totalPick4
     let total = Number(data[i].score1) + Number(data[i].score2)
     let projectedGameTotal = Number(projected[0].total)
-
-    if (projectedGameTotal > Number(data[i].total) + 2) {
+    
+    if (Number(data[i].total) === 0) {
+        totalPick2 = 'No Bet'
+    } else if (projectedGameTotal > Number(data[i].total) + 2) {
         totalPick2 = 'Over'
     } else if (projectedGameTotal < Number(data[i].total) - 2) {
         totalPick2 = 'Under'
@@ -156,7 +158,9 @@ const TestCount = () => {
         totalPick2 = 'No Bet'
     }
 
-    if (projectedGameTotal > Number(data[i].total) + 4) {
+    if (Number(data[i].total) === 0) {
+        totalPick2 = 'No Bet'
+    } else if (projectedGameTotal > Number(data[i].total) + 4) {
         totalPick4 = 'Over'
     } else if (projectedGameTotal < Number(data[i].total) - 4) {
         totalPick4 = 'Under'
