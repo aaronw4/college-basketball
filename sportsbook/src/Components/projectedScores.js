@@ -4,7 +4,7 @@ import {findTeam} from '../Functions/findTeam';
 export function projectedScores (away, home){
     // home/away undefined error means findTeam() cant find the team name in stats.json
 
-    let data = require("../stats.json")
+    let data = require("../pastStats.json")
     let adjTvalues = data.map(value => Number(value.AdjT))
     let adjTTotal = adjTvalues.reduce((total, amount) => total + amount)
     let adjTAve = adjTTotal / adjTvalues.length
@@ -33,8 +33,8 @@ export function projectedScores (away, home){
 }
 
 const ProjectedLines = (props) => {
-    let awayStats = findTeam(props.away);
-    let homeStats = findTeam(props.home);
+    let awayStats = findTeam(props.away, props.purpose);
+    let homeStats = findTeam(props.home, props.purpose);
     let projectedStats = projectedScores(awayStats[0], homeStats[0]);
     
     return (
